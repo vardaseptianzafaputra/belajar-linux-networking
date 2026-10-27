@@ -1,139 +1,139 @@
-# Belajar Linux & Networking
+# Learning Linux & Networking
 
-Repositori ini berisi catatan belajar mandiri tentang Linux dan dasar jaringan komputer sebagai fondasi untuk mempelajari cybersecurity.
+This repository contains self-study notes on Linux and basic computer networking as a foundation for learning cybersecurity.
 
-## 🎯 Tujuan Belajar
+## 🎯 Learning Goals
 
-- Memahami penggunaan terminal Linux.
-- Memahami pengelolaan file, folder, dan permission.
-- Memahami IP address, subnet, gateway, dan routing.
-- Memahami DNS, HTTP/HTTPS, serta pengujian koneksi jaringan.
-- Mempersiapkan fondasi untuk belajar Python, SQL, dan cybersecurity.
+- Understand how to use the Linux terminal.
+- Understand file, folder, and permission management.
+- Understand IP addressing, subnetting, gateways, and routing.
+- Understand DNS, HTTP/HTTPS, and network connectivity testing.
+- Build a foundation for learning Python, SQL, and cybersecurity.
 
 ---
 
-## 📚 Tahap 1 — Linux Dasar & Networking
+## 📚 Stage 1 — Linux Basics & Networking
 
-### 1.1 Terminal dan Navigasi
+### 1.1 Terminal and Navigation
 
-| Perintah | Fungsi |
+| Command | Function |
 |---|---|
-| `pwd` | Menampilkan direktori saat ini |
-| `ls` | Menampilkan isi direktori |
-| `ls -a` | Menampilkan isi termasuk file tersembunyi |
-| `cd` | Berpindah direktori |
-| `mkdir` | Membuat folder |
-| `touch` | Membuat file kosong |
-| `cat` | Menampilkan isi file |
-| `less` | Membaca file dengan navigasi |
-| `head` | Menampilkan bagian awal file |
-| `tail` | Menampilkan bagian akhir file |
-| `nano` | Membuka editor teks di terminal |
-| `find` | Mencari file atau folder |
-| `cp` | Menyalin file atau folder |
-| `mv` | Memindahkan atau mengganti nama |
-| `rm` | Menghapus file |
-| `rmdir` | Menghapus folder kosong |
+| `pwd` | Show the current directory |
+| `ls` | List directory contents |
+| `ls -a` | List contents including hidden files |
+| `cd` | Change directory |
+| `mkdir` | Create a folder |
+| `touch` | Create an empty file |
+| `cat` | Display file contents |
+| `less` | Read a file with navigation |
+| `head` | Show the beginning of a file |
+| `tail` | Show the end of a file |
+| `nano` | Open a terminal text editor |
+| `find` | Search for files or folders |
+| `cp` | Copy a file or folder |
+| `mv` | Move or rename a file/folder |
+| `rm` | Delete a file |
+| `rmdir` | Delete an empty folder |
 
-### 1.2 File, Folder, dan Path
+### 1.2 Files, Folders, and Paths
 
-- `.` berarti direktori saat ini.
-- `..` berarti direktori induk.
-- Nama yang diawali titik, misalnya `.config`, biasanya merupakan file atau folder tersembunyi.
-- `mv catatan.txt catatan-baru.txt` mengganti nama file.
-- `mv catatan.txt Dokumen/` memindahkan file ke folder `Dokumen`.
-- Tanda `/` di akhir tujuan bisa memperjelas bahwa tujuan adalah folder, tetapi tidak selalu wajib.
+- `.` refers to the current directory.
+- `..` refers to the parent directory.
+- Names starting with a dot, like `.config`, are usually hidden files/folders.
+- `mv catatan.txt catatan-baru.txt` renames a file.
+- `mv catatan.txt Dokumen/` moves a file into the `Dokumen` folder.
+- A trailing `/` on the destination can clarify that it's a folder, though it's not always required.
 
-### 1.3 Permission Linux
+### 1.3 Linux Permissions
 
-Permission dasar:
+Basic permissions:
 
-- `r` = read (membaca).
-- `w` = write (menulis atau mengubah).
-- `x` = execute (menjalankan file atau mengakses direktori).
-- `u` = user/owner (pemilik).
-- `g` = group (grup).
-- `o` = others (pengguna lain).
+- `r` = read
+- `w` = write (modify)
+- `x` = execute (run a file or access a directory)
+- `u` = user/owner
+- `g` = group
+- `o` = others
 
-Nilai numerik:
+Numeric values:
 
 - `r = 4`
 - `w = 2`
 - `x = 1`
 
-Contoh:
+Examples:
 
-- `chmod 644 catatan.txt` memberikan pemilik hak baca/tulis dan grup serta pengguna lain hak baca.
-- `chmod 755 skrip.sh` memberikan pemilik hak baca/tulis/jalankan dan grup serta pengguna lain hak baca/jalankan.
-- `chmod` mengubah permission.
-- `chown` mengubah pemilik file.
-- `sudo` menjalankan perintah dengan hak administratif jika diizinkan.
+- `chmod 644 catatan.txt` gives the owner read/write, and group/others read-only.
+- `chmod 755 skrip.sh` gives the owner read/write/execute, and group/others read/execute.
+- `chmod` changes permissions.
+- `chown` changes file ownership.
+- `sudo` runs a command with administrative privileges if permitted.
 
-> Hindari memakai `chmod 777` tanpa alasan yang jelas karena memberikan hak luas kepada semua pengguna.
+> Avoid using `chmod 777` without a clear reason, since it grants full access to everyone.
 
-### 1.4 IP Address dan Interface
+### 1.4 IP Address and Interface
 
-IP Ubuntu di mesin virtual saat latihan:
+Ubuntu IP in the virtual machine during practice:
 
 `192.168.64.4/24`
 
-Interface jaringan:
+Network interface:
 
 `enp0s1`
 
-Perintah untuk melihat alamat IPv4:
+Command to check the IPv4 address:
 
 ```bash
 ip -4 addr show enp0s1
 ```
 
-IP mesin virtual dapat berbeda dari IP Mac karena menggunakan jaringan virtual UTM.
+The VM's IP can differ from the Mac's IP because it uses UTM's virtual network.
 
-### 1.5 Subnet dan CIDR
+### 1.5 Subnet and CIDR
 
-`/24` berarti 24 bit digunakan untuk prefix jaringan.
+`/24` means 24 bits are used for the network prefix.
 
-Contoh `192.168.64.4/24`:
+Example `192.168.64.4/24`:
 
-- IP host: `192.168.64.4`
+- Host IP: `192.168.64.4`
 - Prefix: `/24`
 - Subnet mask: `255.255.255.0`
 - Network address: `192.168.64.0`
 - Broadcast address: `192.168.64.255`
-- Host bit: 8
+- Host bits: 8
 
-Rentang alamat host yang umum dapat digunakan pada subnet tersebut adalah `192.168.64.1` sampai `192.168.64.254`, dengan mempertimbangkan konfigurasi jaringan.
+The usable host range on this subnet is generally `192.168.64.1` to `192.168.64.254`, depending on network configuration.
 
-### 1.6 Gateway dan Routing
+### 1.6 Gateway and Routing
 
-Gateway Ubuntu saat latihan:
+Gateway during practice:
 
 `192.168.64.1`
 
-Perintah untuk memeriksa routing:
+Command to check routing:
 
 ```bash
 ip route
 ```
 
-Gateway biasanya menjadi jalur keluar menuju jaringan lain jika tidak ada rute yang lebih spesifik.
+The gateway is usually the exit path to other networks when no more specific route exists.
 
 ### 1.7 DNS
 
-DNS menerjemahkan nama domain menjadi alamat IP.
+DNS translates domain names into IP addresses.
 
-Perintah yang sudah dipraktikkan:
+Commands practiced:
 
 ```bash
 getent hosts google.com
 nslookup google.com
 ```
 
-Jika akses menggunakan alamat IP berhasil tetapi nama domain gagal diresolusikan, DNS merupakan salah satu hal yang perlu diperiksa.
+If access by IP address works but domain name resolution fails, DNS is one of the things to check.
 
-### 1.8 Pengujian Koneksi
+### 1.8 Connectivity Testing
 
-Perintah yang sudah dipraktikkan:
+Commands practiced:
 
 ```bash
 ping -c 4 192.168.64.1
@@ -141,54 +141,54 @@ ping -c 4 8.8.8.8
 ping -c 4 google.com
 ```
 
-- `-c 4` membatasi pengiriman menjadi empat paket.
-- `0% packet loss` berarti semua paket yang dikirim mendapat balasan.
-- `100% packet loss` berarti tidak ada paket yang mendapat balasan. Ini tidak selalu membuktikan bahwa seluruh koneksi internet mati karena tujuan atau jaringan dapat memblokir ping.
+- `-c 4` limits the number of packets sent to four.
+- `0% packet loss` means all sent packets received a reply.
+- `100% packet loss` means no packets received a reply. This doesn't always prove the whole internet connection is down, since the target or network may be blocking pings.
 
-### 1.9 HTTP dan HTTPS
+### 1.9 HTTP and HTTPS
 
-Perintah yang sudah dipraktikkan:
+Commands practiced:
 
 ```bash
 curl -I https://www.google.com/
 curl -IL https://google.com
 ```
 
-- `curl` digunakan untuk melakukan permintaan ke URL.
-- `-I` meminta header respons.
-- `-L` mengikuti pengalihan (redirect).
-- HTTP `301` menunjukkan pengalihan permanen.
-- HTTP `200` menunjukkan permintaan berhasil diproses.
+- `curl` sends a request to a URL.
+- `-I` requests only the response headers.
+- `-L` follows redirects.
+- HTTP `301` indicates a permanent redirect.
+- HTTP `200` indicates a successful request.
 
 ---
 
-## 📝 Evaluasi Tahap 1
+## 📝 Stage 1 Evaluation
 
-Hasil evaluasi utama: **10/12 (83,3%)**.
+Main evaluation result: **10/12 (83.3%)**.
 
-Materi yang perlu diperkuat:
+Areas that need reinforcement:
 
-1. Memahami arti `100% packet loss`.
-2. Membedakan IP host dengan network address.
+1. Understanding the meaning of `100% packet loss`.
+2. Distinguishing a host IP from a network address.
 
-Latihan tambahan juga mencakup `chmod`, `sudo`, `chown`, `find`, `cat`, `mv`, dan `ls -a`.
+Additional practice also covered `chmod`, `sudo`, `chown`, `find`, `cat`, `mv`, and `ls -a`.
 
-## 🚧 Materi Lanjutan
+## 🚧 Next Topics
 
-Materi berikutnya yang perlu dipelajari dan dipraktikkan secara bertahap:
+Upcoming material to study and practice gradually:
 
-- Memperkuat subnet dan perhitungan network address.
-- Routing lebih lanjut.
-- Pemeriksaan koneksi dan troubleshooting jaringan.
-- Evaluasi akhir dengan praktik langsung.
+- Strengthening subnetting and network address calculation.
+- Further routing concepts.
+- Network checking and troubleshooting.
+- A final hands-on evaluation.
 
-Catatan: perintah `traceroute` belum dipraktikkan dalam sesi belajar ini.
+Note: `traceroute` has not yet been practiced in this learning session.
 
 ---
 
-## 📌 Prinsip Belajar
+## 📌 Learning Principles
 
-- Praktik langsung di Ubuntu melalui UTM.
-- Memahami fungsi perintah sebelum menggunakannya.
-- Tidak menjalankan perintah berisiko tanpa memahami dampaknya.
-- Memperbarui catatan setelah materi benar-benar dipelajari.
+- Hands-on practice in Ubuntu via UTM.
+- Understand a command's function before using it.
+- Avoid running risky commands without understanding their impact.
+- Update notes only after material has actually been learned.
